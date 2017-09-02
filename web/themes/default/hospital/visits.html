@@ -1,0 +1,465 @@
+{template 'common/header'}
+
+<style>
+
+    .label{line-height: 1.8}
+    .anl{width: 20%;text-align: center;}
+    .anl p,.anl input{display: block;width: 80%;}
+    .anl p{margin: 10px auto;}
+    .w33{width: 30%;}
+</style>
+
+
+<ul class="nav nav-tabs">
+
+    <li {if $do == 'list'}class="active"{/if}><a href="{php echo url('hospital/visits/list')}">日期排表</a></li>
+
+    {if $do == 'add_day' || $do == 'list'}<li {if $do == 'add_day'}class="active"{/if}><a href="{php echo url('hospital/visits/add_day', array('page' => $pindex));}">新建一天排班</a></li>{/if}
+
+    {if $do == 'doctor'}<li {if $do == 'doctor'}class="active"{/if}><a href="javascript:void();"><?php echo $date ?>日详情</a></li>{/if}
+
+</ul>
+
+{if $do=='list'}
+<form method="post" class="form-horizontal" action="./index.php?c=hospital&a=visits&do=list&pd=del" id="form2">
+    <div class="panel panel-default ">
+        <div class="table-responsive panel-body">
+            <table class="table table-hover">
+                <input type="hidden" name="do" value="del" />
+                <thead class="navbar-inner">
+                <tr>
+                    <th style="width:5%;">删?</th>
+                    <th style="width:10%;">日期</th>
+                    <th style="width:20%;text-align:right">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php for($i = 0; $i < count($date); $i++){ ?>
+                <tr>
+                    <td><input type="checkbox" name="ssid[]" value="<?php echo $date[$i]; ?>" class=""></td>
+                    <td><?php echo $date[$i]; ?></td>
+                    <td class="text-right" style="overflow:visible;">
+                        <div class="btn-group">
+                            <a href="{php echo url('hospital/visits/doctor',array('date' => $date[$i]))}" title="详情" class="btn btn-success">详情</a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="{php echo url('hospital/visits/update_day',array('center_date' => $date[$i]))}" title="编辑" class="btn btn-success">编辑</a>
+                        </div>
+                    </td>
+                </tr>
+                <?php } ?>
+                <tr>
+                    <td><input type="checkbox" name="" onclick="var ck = this.checked;$(':checkbox').each(function(){this.checked = ck});"></td>
+                    <td colspan="7">
+                        <input type="submit" name="submit" class="btn btn-primary" value="删除">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {$pager}
+</form>
+
+<script>
+    require(['trade', 'bootstrap'], function(trade){
+        trade.init();
+        $('#form2').submit(function(){
+            if($(":checkbox[name='ssid[]']:checked").size() > 0){
+                return confirm('删除后不可恢复，您确定删除吗？');
+            }
+            util.message('没有选择医生', '', 'error');
+            return false;
+        });
+    });
+</script>
+
+{/if}
+
+{if $do=='doctor'}
+
+<div class="panel panel-info">
+    <div class="panel-heading"><h2><?php echo $date ?>日出诊信息</h2></div>
+</div>
+<form method="post" class="form-horizontal" action="./index.php?c=hospital&a=doctor&do=list&pd=del&page={$pindex}" id="form">
+    <div class="panel panel-default ">
+        <div class="table-responsive panel-body">
+            <table class="table table-hover">
+                <input type="hidden" name="do" value="del" />
+                <thead class="navbar-inner">
+                <tr>
+                    <th style="width:10%;">医生编号</th>
+                    <th style="width:15%;">医生姓名</th>
+                    <th style="min-width:30%;">手机</th>
+                    <th style="min-width:30%;">科室</th>
+                    <th style="min-width:30%;">职位</th>
+                    <th style="min-width:10%;">出诊号个数</th>
+                    <th style="min-width:10%;">以预约号数</th>
+                    <th style="width:20%;text-align:right">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop $visitions $li}
+                <tr>
+                    <?php $doctor = pdo_fetch("SELECT * FROM ".tablename('doctor') . " where id = " . $li['doctor_id']); ?>
+                    <td><?php echo $doctor['id']; ?></td>
+                    <td><?php echo $doctor['name']; ?></td>
+                    <td><?php echo $doctor['phone']; ?></td>
+                    <td>
+                        <?php
+                         $sect = pdo_fetch("SELECT * FROM ".tablename('section_office')." where id = ".$doctor['section_id']);
+                         echo $sect['name'];
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            switch($doctor['level']){
+                                case 1:
+                                    echo '教授';
+                                    break;
+                                case 2:
+                                    echo '副教授';
+                                    break;
+                                case 3:
+                                    echo '主任医生';
+                                    break;
+                            }
+                        ?>
+                    </td>
+                    <td>{$li['number']}</td>
+                    <td>{$li['registered']}</td>
+                    <td class="text-right" style="overflow:visible;">
+                        <div class="btn-group">
+                            <a href="{php echo url('hospital/visits/update',array('id' => $li['id'], 'date' => $date))}" title="修改出诊号个数" class="btn btn-success">修改出诊号个数</a>
+                        </div>
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {$pager}
+</form>
+
+{/if}
+
+{if $do == 'update_day'}
+
+<form action="./index.php?c=hospital&a=visits&do=list&pd=update_day" method="post" class="form-horizontal" role="form" id="form5" enctype="multipart/form-data">
+    <div class="panel panel-info">
+        <div class="panel-heading">修改排班</div>
+        <div class="panel-body">
+            <div id="d1">
+                <div id="d3" class="col-lg-7 col-lg-offset-2">
+                    <table cellpadding="0" cellspacing="8">
+                        <tr>
+                            <td height="30">全部</td>
+                            <td>&nbsp;</td>
+                            <td>已选择</td>
+                        </tr>
+                        <tr>
+                            <td class="w33">
+                                <select id="s1" name="s1" style="width:180px; height:220px;" multiple="multiple">
+                                    <?php foreach($all_doctors as $all_doctor){ ?>
+                                    <option value="<?php echo $all_doctor['id'] ?>">
+                                        <?php $section = pdo_fetch("SELECT * FROM ".tablename('section_office') . " where id = " . $all_doctor['section_id']); ?>
+                                        <?php echo $section['name']. '&nbsp;&nbsp;&nbsp;&nbsp;' .  $all_doctor['name'] ?>
+                                    </option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <td class="anl">
+                                <p><input id="b1" type="button" class="s1" value="--&gt;" /></p>
+                                <p><input type="button" id="b2" class="s1" value="--&gt;&gt;" /></p>
+                                <p><input type="button" id="b3" class="s1" value="&lt;--" /></p>
+                                <p><input type="button" id="b4" class="s1" value="&lt;&lt;--" /></p>
+                            </td>
+                            <td class="w33">
+                                <select id="s2" name="s2" style="width:180px;height:220px;" multiple="multiple">
+                                    <?php foreach($doctors as $doctor){ ?>
+                                    <option value="<?php echo $doctor['id'] ?>">
+                                        <?php $section = pdo_fetch("SELECT * FROM ".tablename('section_office') . " where id = " . $doctor['section_id']); ?>
+                                        <?php echo $section['name']. '&nbsp;&nbsp;&nbsp;&nbsp;' .  $doctor['name'] ?>
+                                    </option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-9 col-xs-12">
+            <input onclick="fun();" type="submit" value="修改" class="btn btn-primary"/>
+            <input type="hidden" id="doctors1" name="doctors1" value="">
+            <input type="hidden" value="<?php echo $center_date ?>" name="yuan_date">
+        </div>
+    </div>
+</form>
+<script>
+    function fun(){
+        obj = document.getElementById("s2");
+        str = [];
+        for(i=0;i<obj.length;i++){
+            str[i] = obj[i].value;
+        }
+        document.getElementById('doctors1').value=str;
+        console.log(document.getElementById('doctors').value);
+        console.log(str)
+    }
+    $(function(){
+
+        $('#b1').click(function(){
+            $obj = $('#d1 select option:selected').clone(true);
+            if($obj.size() == 0){
+                alert("您还没有选择!");
+            }
+            $('#s2').append($obj);
+            $('#d1 select option:selected').remove();
+        });
+
+        $('#b2').click(function(){
+            $('#s2').append($('#s1 option'));
+        });
+
+        $('#b3').click(function(){
+            $obj = $('#d1 select option:selected').clone(true);
+            if($obj.size() == 0){
+                alert("您还没有选择!");
+            }
+            $('#s1').append($obj);
+            $('#d1 select option:selected').remove();
+        });
+
+        $('#b4').click(function(){
+            $('#s1').append($('#s2 option'));
+        });
+
+        $('#d1 option').dblclick(function(){
+            var flag = $(this).parent().attr('id');
+            if(flag == "s1"){
+                var $obj = $(this).clone(true);
+                $('#s2').append($obj);
+                $(this).remove();
+            } else {
+                var $obj = $(this).clone(true);
+                $('#s1').append($obj);
+                $(this).remove();
+            }
+        });
+
+    });
+</script>
+<script>
+    require(['validator'], function($){
+        $(function(){
+            $('#form1').bootstrapValidator({
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: '姓名不能为空'
+                            }
+                        }
+                    },
+                    phone: {
+                        validators: {
+                            notEmpty: {
+                                message: '手机不能为空'
+                            },
+                            regexp: {
+                                regexp: /1\d{10}/,
+                                message: '手机号格式不正确'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+{/if}
+
+
+{if $do == 'add_day'}
+
+<form action="./index.php?c=hospital&a=visits&do=list&pd=add_day" method="post" class="form-horizontal" role="form" id="form4" enctype="multipart/form-data">
+    <div class="panel panel-info">
+        <div class="panel-heading">新建一天排班</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">新建日期</label>
+                <div class="col-sm-9 col-xs-12">
+                    <select name="date" class="form-control">
+                        <?php for($jlll_i = 0; $jlll_i < count($date); $jlll_i++){ ?>
+                            <option value="<?php echo $date[$jlll_i]; ?>"><?php echo $showdate[$jlll_i]; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div id="qd1">
+                <div id="qd3" class="col-lg-7 col-lg-offset-2">
+                    <table cellpadding="0" cellspacing="8">
+                        <tr>
+                            <td height="30">全部</td>
+                            <td>&nbsp;</td>
+                            <td>已选择</td>
+                        </tr>
+                        <tr>
+                            <td class="w33">
+                                <select id="qs1" name="s1" style="width:180px; height:220px;" multiple="multiple">
+                                    <?php foreach($all_doctors as $all_doctor){ ?>
+                                    <option value="<?php echo $all_doctor['id'] ?>">
+                                        <?php $section = pdo_fetch("SELECT * FROM ".tablename('section_office') . " where id = " . $all_doctor['section_id']); ?>
+                                        <?php echo $section['name']. '&nbsp;&nbsp;&nbsp;&nbsp;' .  $all_doctor['name'] ?>
+                                    </option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <td class="anl">
+                                <p><input id="qb1" type="button" class="s1" value="--&gt;" /></p>
+                                <p><input type="button" id="qb2" class="s1" value="--&gt;&gt;" /></p>
+                                <p><input type="button" id="qb3" class="s1" value="&lt;--" /></p>
+                                <p><input type="button" id="qb4" class="s1" value="&lt;&lt;--" /></p>
+                            </td>
+                            <td class="w33">
+                                <select id="qs2" name="s2" style="width:180px;height:220px;" multiple="multiple">
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-9 col-xs-12">
+            <input onclick="fun();" type="submit" value="添加" class="btn btn-primary"/>
+            <input type="hidden" id="doctors" name="doctors" value="">
+        </div>
+    </div>
+</form>
+<script>
+    function fun(){
+        obj = document.getElementById("qs2");
+        str = [];
+        for(i=0;i<obj.length;i++){
+            str[i] = obj[i].value;
+        }
+        document.getElementById('doctors').value=str;
+        console.log(document.getElementById('doctors').value);
+        console.log(str)
+    }
+    $(function(){
+
+        $('#qb1').click(function(){
+            $obj = $('#qd1 select option:selected').clone(true);
+            if($obj.size() == 0){
+                alert("您还没有选择!");
+            }
+            $('#qs2').append($obj);
+            $('#qd1 select option:selected').remove();
+        });
+
+        $('#qb2').click(function(){
+            $('#qs2').append($('#qs1 option'));
+        });
+
+        $('#qb3').click(function(){
+            $obj = $('#qd1 select option:selected').clone(true);
+            if($obj.size() == 0){
+                alert("您还没有选择!");
+            }
+            $('#qs1').append($obj);
+            $('#qd1 select option:selected').remove();
+        });
+
+        $('#qb4').click(function(){
+            $('#qs1').append($('#qs2 option'));
+        });
+
+        $('#qd1 option').dblclick(function(){
+            var flag = $(this).parent().attr('id');
+            if(flag == "qs1"){
+                var $obj = $(this).clone(true);
+                $('#qs2').append($obj);
+                $(this).remove();
+            } else {
+                var $obj = $(this).clone(true);
+                $('#qs1').append($obj);
+                $(this).remove();
+            }
+        });
+
+    });
+</script>
+<script>
+    require(['validator'], function($){
+        $(function(){
+            $('#form1').bootstrapValidator({
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: '姓名不能为空'
+                            }
+                        }
+                    },
+                    phone: {
+                        validators: {
+                            notEmpty: {
+                                message: '手机不能为空'
+                            },
+                            regexp: {
+                                regexp: /1\d{10}/,
+                                message: '手机号格式不正确'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+{/if}
+
+{if $do == 'update'}
+
+<form action="./index.php?c=hospital&a=visits&do=doctor&date=<?php echo $date; ?>" method="post" class="form-horizontal" role="form" id="form1" enctype="multipart/form-data">
+    <div class="panel panel-info">
+        <div class="panel-heading">修改号码个数</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">号码个数</label>
+                <div class="col-sm-9 col-xs-12">
+                    <select name="num" class="form-control">
+                        <option <?php if($visition['number'] == 0) echo 'selected="selected"'; ?> value="0">0</option>
+                        <option <?php if($visition['number'] == 1) echo 'selected="selected"'; ?> value="1">1</option>
+                        <option <?php if($visition['number'] == 2) echo 'selected="selected"'; ?> value="2">2</option>
+                        <option <?php if($visition['number'] == 3) echo 'selected="selected"'; ?> value="3">3</option>
+                        <option <?php if($visition['number'] == 4) echo 'selected="selected"'; ?> value="4">4</option>
+                        <option <?php if($visition['number'] == 5) echo 'selected="selected"'; ?> value="5">5</option>
+                        <option <?php if($visition['number'] == 6) echo 'selected="selected"'; ?> value="6">6</option>
+                        <option <?php if($visition['number'] == 7) echo 'selected="selected"'; ?> value="7">7</option>
+                        <option <?php if($visition['number'] == 8) echo 'selected="selected"'; ?> value="8">8</option>
+                        <option <?php if($visition['number'] == 9) echo 'selected="selected"'; ?> value="9">9</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-9 col-xs-12">
+            <input type="hidden" value="<?php echo $id; ?>" name="id">
+            <input type="submit" value="提交" class="btn btn-primary"/>
+        </div>
+    </div>
+</form>
+
+{/if}
+
+{template 'common/footer'}
+

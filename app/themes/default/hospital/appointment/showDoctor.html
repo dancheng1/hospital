@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="public/css/api.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/common.css" />
+	<script type="text/javascript" src="public\evaluate\js\jquery.min.js" ></script>
+    <style>
+    	html, body {width: 100%;min-height: 100%;background: #f0f0f0;}
+    	.h10 {height: 10px;background: #f0f0f0;}
+		.h1 {height: 1px;margin-left: 15px;background: #f0f0f0;}
+		.fr {float: right;}
+		.hint {color: #666;font-size: 12px;margin-right: 5px;}
+
+		.firstblock, .secondblock, .thirdblock {background-color: #fff;}
+		/* 头部登陆 */
+		.login {background-image: url(public/image/personal_bkg.jpg);background-repeat: no-repeat; background-size: contain;position: relative;}
+		.loginbg {/*position: absolute;*/ width: 100%;}
+		.login .personal_logo {position: absolute; top: 60px; width: 70px; left: 20px;}
+		.person_arrow {position: absolute;height: 20px; right: 10px; top: 90px;}
+		.login .userinfo {position: absolute; top: 60px; margin-left: 100px;}
+		.login .userinfo .title {font-size: 20px; color: #fff;}
+		.login .userinfo .subtitle {font-size: 14px; color: #fff;border: 1px solid #fff;display: inline-block;padding: 3px;border-radius: 4px;margin-top: 5px;}
+
+		/* 设置条目 */
+		.item {height: 50px;line-height: 50px;padding-left: 15px;background-color: #fff;}
+		.item_ico {float: left;width: 30px;padding: 10px 10px 10px 0;}
+		.item_arrow {float: right;width: 16px;padding: 17px 15px 15px 0;}
+
+		.presshover {background-color: #FAFAFA;}
+		.darktitle {height: 40px;line-height: 40px;margin-left: 15px;font-size: 14px;color: #666;}
+    </style>
+        
+    <style>
+     
+     /* 头部样式 */
+     .topbar {background: #0054B4; height:50px; border-bottom: 1px solid #DDDFE3;}
+     .topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+     .hr01, .hr02 {height: 28px;}
+     .headerico {padding: 11px 15px 11px 15px;}
+     .headericohover {background: #DADDE0;}
+     .fr{float: right;}
+     .fl{float: left;}
+   
+     /*第一头部*/
+     #logo {padding: 11px 0 0 10px;height: 28px;}
+     #citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+     .citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+    .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+    .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+    .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+    .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+     .swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+     .back {float: left; }
+     .back img {height: 35px;margin-top: 10px;margin-left: 15px;}
+     .topbar .title {line-height: 50px;text-align: center;font-size: 22px; color:#fff;}
+	 .ttt{text-align: center;height: auto;overflow: hidden;background: #fff;border-top: 5px solid #fff;border-bottom: 5px solid #fff;}
+	 .timespan{border:1px solid #EEEEEE;width: 50px;height: 50px;border-left-width: 0;  }
+	.span_w {width:14.28%;float: left;}
+	.input_w  {width: 100%;}
+	input{-webkit-appearance:none;border-radius: 0;}
+
+     </style>
+	<style>
+		/*head*/
+		.head{height: 3rem;line-height: 2rem;background: rgb(66,139,202);text-align: center;position: relative;}
+		.head span{color:#fff;display: inline-block;}
+		.head span.bt-wz{font-size: 1.2rem;padding-top: 8px;}
+		.head span.bt-back{background: url('public/evaluate/images/left.png') center no-repeat;height: 100%;width: 0.8rem;position: absolute;left: 0.6rem;background-size: 1.4rem;}
+
+		/*foot*/
+		.foot{height:2rem;line-height:2rem;font-size: 0.8rem;color: #fff;text-align: center;background: rgb(66,139,202);position: fixed;left: 0;bottom: 0;width: 100%;}
+	</style>
+
+	<style>
+		.nodoctor{
+			line-height: 60px;background: url('public/evaluate/images/doctor.png') #fff 0.5rem center no-repeat;padding: 0.2rem 0.5rem;
+		}
+	</style>
+
+</head>
+<body>
+      <!-- 头部 -->
+      <div id="thridHeader" class="titlebar">
+        <div style="background: rgb(66,139,202);" class="topbar whitebar">
+          <div class="back"  tapmode="" onclick="location.href='index.php?i=2&c=hospital&a=appointment&do=list'"><img src="public/image/ic_home_back_u.png" alt=""></div>
+          <div class="title" id="title"><?php echo $section['name']; ?></div>
+        </div>
+      </div>
+
+	  <div class="ttt">
+		  <span class="span_w"><input  style="background: #abdaf0;color: #fff;" class="timespan input_w" type="button" value="<?php echo $date1; ?>" onclick="getDocList('<?php echo $date1; ?>', <?php echo $section_id ?>)"></span>
+		  <span class="span_w"><input class="timespan input_w" type="button" value="<?php echo $date2; ?>" onclick="getDocList('<?php echo $date2 ?>', <?php echo $section_id ?>)"></span>
+		  <span class="span_w"><input class="timespan input_w" type="button" value="<?php echo $date3; ?>" onclick="getDocList('<?php echo $date3 ?>', <?php echo $section_id ?>)"></span>
+		  <span class="span_w"><input class="timespan input_w" type="button" value="<?php echo $date4; ?>" onclick="getDocList('<?php echo $date4 ?>', <?php echo $section_id ?>)"></span>
+		  <span class="span_w"><input class="timespan input_w" type="button" value="<?php echo $date5; ?>" onclick="getDocList('<?php echo $date5 ?>', <?php echo $section_id ?>)"></span>
+		  <span class="span_w"><input class="timespan input_w" type="button" value="<?php echo $date6; ?>" onclick="getDocList('<?php echo $date6 ?>', <?php echo $section_id ?>)"></span>
+		  <span class="span_w"><input class="timespan input_w" type="button" value="<?php echo $date7; ?>" onclick="getDocList('<?php echo $date7 ?>', <?php echo $section_id ?>)"></span>
+	  </div>
+
+	  <script>
+		  $(function () {
+			  $('.span_w').each(function () {
+				  $(this).click(function () {
+					  $(this).find('input').css({'background':'#abdaf0','color':"#fff"});
+					  $(this).siblings('.span_w').find('input').css({'background':'#fff','color':"rgb(50,50,50)"});
+                  })
+              })
+          })
+	  </script>
+	  <div id="dv" style="line-height: 60px;background: url('public/evaluate/images/doctor.png') #fff 0.5rem center no-repeat;padding: 0.2rem 0.5rem; display: none">今天没有出诊的医生！</div>
+<div id="iframe1" colspan="2" style="padding:0">
+</div>
+
+<iframe src="" frameborder="0" width="0" height="0" id="ifr1"></iframe>
+	  <div class="foot">版权所有 公主岭市妇幼保健院</div>
+</body>
+<script type="text/javascript" src="public/script/api.js"></script>
+<script type="text/javascript">
+function openNewWindow(type) {
+	api.openWin({
+		name: 'forthsub',
+		url: './forth_header.html',
+		pageParam: {name: type},
+		bounces: false,
+		delay:200
+	});
+}
+function openLogin() {
+	api.openWin({
+		name: 'login',
+		url: './login_header.html',
+		bounces: false,
+		delay:200
+	});
+}
+function sss($id) {
+	location.href='index.php?i=2&c=hospital&a=appointment&do=list&id=3&doctor_id=' + $id;
+}
+function getDocList(date, section_id){
+    //获取iframe
+    var ifr = document.getElementById("ifr1");
+    //alert(section_id);
+    //设置iframe的src
+    ifr.src = "index.php?i=2&c=hospital&a=appointment&do=list&id=2&datechange="+ date + "&section_id=" + section_id;
+}
+
+
+</script>
+</html>

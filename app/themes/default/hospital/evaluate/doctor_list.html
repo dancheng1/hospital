@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="public\evaluate\css\style.css" />
+    <link rel="stylesheet" href="public\evaluate\css\dropload.css" />
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            -webkit-tap-highlight-color:rgba(0,0,0,0);
+            -webkit-text-size-adjust:none;
+        }
+        html{
+            font-size:10px;
+        }
+        body{
+            background-color: #f5f5f5;
+            font-size: 1.2em;
+        }
+        .header{
+            height: 44px;
+            line-height: 44px;
+            border-bottom: 1px solid #ccc;
+            background-color: #eee;
+        }
+        .header h1{
+            text-align: center;
+            font-size: 2rem;
+            font-weight: normal;
+        }
+        .content{
+            max-width: 640px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .content .item{
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align:center;
+            -webkit-box-align:center;
+            box-align:center;
+            -webkit-align-items:center;
+            align-items:center;
+            padding:3.125%;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+            text-decoration: none;
+        }
+        .content .item img{
+            display: block;
+            width: 40px;
+            height: 40px;
+            border:1px solid #ddd;
+        }
+        .content .item h3{
+            display: block;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            width: 100%;
+            max-height: 40px;
+            overflow: hidden;
+            line-height: 20px;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+        .content .item .date{
+            display: block;
+            height: 20px;
+            line-height: 20px;
+            color: #999;
+        }
+        .opacity{
+            -webkit-animation: opacity 0.3s linear;
+            animation: opacity 0.3s linear;
+        }
+        @-webkit-keyframes opacity {
+            0% {
+                opacity:0;
+            }
+            100% {
+                opacity:1;
+            }
+        }
+        @keyframes opacity {
+            0% {
+                opacity:0;
+            }
+            100% {
+                opacity:1;
+            }
+        }
+        .bmx li div:first-child{ margin-top: -1.05rem;width: 2.1rem;height: 2.1rem;  overflow: hidden;}
+        .bmx li img{width: 2.1rem;height: 2.8rem;}
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="head">
+        <span class="bt-wz">全部医生</span>
+    </div>
+
+    <div class="content" id="main">
+        <ul id="list_box" class="lists yslist bmx"></ul>
+    </div>
+
+    <div class="foot">版权所有 公主岭市妇幼保健院</div>
+</div>
+<script src="public\evaluate\js\zepto.min.js"></script>
+<script src="public\evaluate\js\dropload.min.js"></script>
+<script>
+    $(function(){
+        // 页数
+        var page = 0;
+        // 每页展示5个
+        var size = 8;
+
+        // dropload
+        $('.content').dropload({
+            scrollArea : window,
+            loadDownFn : function(me){
+                page++;
+                // 拼接HTML
+                var result = '';
+                $.ajax({
+                    type: 'GET',
+                    url: 'index.php?i=2&c=hospital&a=evaluate&do=list&id=3&page=' + page + '&psize=' + size,
+                    dataType: 'json',
+                    success: function(data){
+                        var arrLen = data.length;
+                        if(arrLen > 0){
+                            for(var i=0; i<arrLen; i++){
+                                result +=   '<li><a href="index.php?i=2&c=hospital&a=evaluate&do=list&id=1&doctor_id='+data[i].id+'"><div> <img src="../web/' + data[i].img_url + '" /> </div><div><p>'+data[i].name+'<span>'
+                                switch (data[i].section_id){
+                                    case 1:
+                                        result += '教授';
+                                        break;
+                                    case 2:
+                                        result += '副教授';
+                                        break;
+                                    case 3:
+                                        result += '主任医生';
+                                        break;
+                                }
+                                result += '</span> </p><p>' + data[i].intro + '</p></div></a></li>';
+                            }
+                            // 如果没有数据
+                        }else{
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }
+                        // 为了测试，延迟1秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('#list_box').append(result);
+                            // 每次数据插入，必须重置
+                            me.resetload();
+
+                            if ($('.firstblock').length > 0){
+                                if (parseInt($('.content').css('height')) <= $(window).height()){
+                                    if ($('.dropload-noData').text() == '暂无数据'){
+                                        $('.dropload-down').css('display','none');
+                                    }
+                                }
+                            }
+
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        console.log('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    function fontSizeRoot() {
+        var ele = document.getElementsByTagName("html")[0];
+        var kl = document.body.clientWidth;
+        console.log(kl)
+        if(kl >= 768) {
+            kl = 768
+        }
+        var size = kl / 320 * 20;
+        ele.style.fontSize = size + "px"
+    }
+    fontSizeRoot();
+
+    window.onresize = function() {
+        fontSizeRoot();
+
+    };
+</script>
+
+
+</body>
+</html>

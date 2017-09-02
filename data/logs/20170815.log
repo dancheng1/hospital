@@ -1,0 +1,320 @@
+2017-08-15 11:42:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768548</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:27 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768548',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768548',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:27 response :
+------------
+
+2017-08-15 11:42:32 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768552</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:32 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768552',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768552',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:32 response :
+------------
+
+2017-08-15 11:42:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768553</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:33 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768553',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768553',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:33 response :
+------------
+
+2017-08-15 11:42:34 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768554</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:34 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768554',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768554',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:34 response :
+------------
+
+2017-08-15 11:42:34 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768555</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:34 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768555',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768555',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:34 response :
+------------
+
+2017-08-15 11:42:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768555</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:35 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768555',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768555',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:35 response :
+------------
+
+2017-08-15 11:42:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768555</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:35 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768555',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768555',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:35 response :
+------------
+
+2017-08-15 11:42:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768555</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:35 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768555',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768555',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:35 response :
+------------
+
+2017-08-15 11:42:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768555</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:35 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768555',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768555',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:35 response :
+------------
+
+2017-08-15 11:42:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502768556</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容111111111111111]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-15 11:42:35 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502768556',
+    'msgtype' => 'text',
+    'content' => '测试内容111111111111111',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502768556',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-15 11:42:35 response :
+------------
+

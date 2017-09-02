@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="public\evaluate\css\style.css" />
+    <link rel="stylesheet" href="public\evaluate\css\dropload.css" />
+    <style>
+        .lists li{padding: 0.7rem 1rem 0.7rem 0.5rem;}
+        .lists li:nth-child(even) {background:url("public/evaluate/images/xlzy.png") 96% center no-repeat #dff0ff;background-size: 1.3rem;}
+        .lists li:nth-child(odd) {background:url("public/evaluate/images/xlzy.png") 96% center no-repeat #eef5fb;background-size: 1.3rem;}
+        .lists li a{line-height: 0.9rem;display: block;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="head">
+        <span class="bt-wz">线路指南</span>
+    </div>
+
+    <div class="content" id="main">
+        <ul id="list_box" class="lists">
+            <?php foreach($maps as $map){ ?>
+                <li><a href="index.php?i=2&c=hospital&a=index&do=change&strLng=<?php echo $map['precision']; ?>&strLat=<?php echo $map['dimension']; ?>&strAddress=<?php echo $map['cn_name']; ?>&hospName=公主岭市妇幼保健院"><?php echo $map['cn_name']; ?></a></li>
+            <?php } ?>
+        </ul>
+    </div>
+
+
+    <div class="foot">版权所有 公主岭市妇幼保健院</div>
+</div>
+<script src="public\evaluate\js\zepto.min.js"></script>
+<script src="public\evaluate\js\dropload.min.js"></script>
+<!-- <script>
+    $(function(){
+        // 页数
+        var page = 0;
+        // 每页展示5个
+        var size = 8;
+
+        // dropload
+        $('.content').dropload({
+            scrollArea : window,
+            loadDownFn : function(me){
+                page++;
+                // 拼接HTML
+                var result = '';
+                $.ajax({
+                    type: 'GET',
+                    url: 'index.php?i=2&c=hospital&a=evaluate&do=list&id=3&page=' + page + '&psize=' + size,
+                    dataType: 'json',
+                    success: function(data){
+                        console.log(data)
+                        var arrLen = data.length;
+                        if(arrLen > 0){
+                            for(var i=0; i<arrLen; i++){
+                                result +=   '<li><div> <img src="../web/' + data[i].img_url + '" /> </div><div><p><span>姓名：</span>'+data[i].name+'</p><p><span>职称：</span>'
+                                switch (parseInt(data[i].section_id)){
+                                    case 1:
+                                        result += '教授';
+                                        break;
+                                    case 2:
+                                        result += '副教授';
+                                        break;
+                                    case 3:
+                                        result += '主任医生';
+                                        break;
+                                }
+                                result += '</p><p><span>从医经历：</span>' + data[i].intro + '</p></div></li>';
+                            }
+                            // 如果没有数据
+                        }else{
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }
+                        // 为了测试，延迟1秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('#list_box').append(result);
+                            // 每次数据插入，必须重置
+                            me.resetload();
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        console.log('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    });
+</script> -->
+<script>
+    function fontSizeRoot() {
+        var ele = document.getElementsByTagName("html")[0];
+        var kl = document.body.clientWidth;
+        console.log(kl)
+        if(kl >= 768) {
+            kl = 768
+        }
+        var size = kl / 320 * 20;
+        ele.style.fontSize = size + "px"
+    }
+    fontSizeRoot();
+
+    window.onresize = function() {
+        fontSizeRoot();
+
+    };
+</script>
+</body>
+</html>

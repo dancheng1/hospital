@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="public\evaluate\css\style.css" />
+    <script type="text/javascript" src="public\evaluate\js\jquery.min.js" ></script>
+
+</head>
+
+<body>
+
+
+<div class="box">
+    <div class="head">
+        <span class="bt-back" onclick="history.go(-1)"></span>
+        <span class="bt-wz">医生评价</span>
+    </div>
+    <div class="yspj">
+        <h2><?php echo  $doctor['name']; ?><a href="index.php?i=2&c=hospital&a=evaluate&do=list&id=2&doctor_id=<?php echo $doctor['id'] ?>">查看评论</a></h2>
+
+        <form action="index.php?i=2&c=hospital&a=evaluate&do=list&id=0" method="post" class="pjbd">
+            <input type="hidden" name="doctorId" id="doctorId" value="<?php echo $doctor['id']; ?>">
+            <div class="inp pxj">
+                <label>分数：</label>
+                <div class="xing" id="xing"></div>
+                <input type="text" id="scorce" name="scorce" value="0" hidden="hidden" />
+                <script>
+                    var starNum=0;
+                    function chgStar()
+                    {
+                        starNum=event.srcElement.id.slice(-1);                  //从第一个到结束
+                        for (var i=1;i<=5;i++) eval("id"+i).innerText="☆";     //显示的星星
+                        for (var j=1;j<=starNum;j++) eval("id"+j).innerText="★";//选中的星星
+                        var i=20*starNum;
+                        $('#scorce').attr('value',i);
+                    }
+                    for (var i=1;i<=5;i++)
+                    { //动态输出span，并设置span的样式和事件
+                        $('#xing').append('<span id="id'+i+'" onclick="chgStar()">☆</span>');
+                    }
+                </script>
+
+            </div>
+            <div class="inp pll">
+                <label>评语：</label><textarea name="evaluate_note" class="plkk" id="evaluate_note" placeholder="请留下您的宝贵建议！"></textarea>
+            </div>
+            <input type="submit" value="提交" class="submit">
+        </form>
+    </div>
+
+    <div class="foot">版权所有 公主岭市妇幼保健院</div>
+</div>
+<script>
+    function fontSizeRoot() {
+        var ele = document.getElementsByTagName("html")[0];
+        var kl = document.body.clientWidth;
+        console.log(kl)
+        if(kl >= 768) {
+            kl = 768
+        }
+        var size = kl / 320 * 20;
+        ele.style.fontSize = size + "px"
+    }
+    fontSizeRoot();
+
+    window.onresize = function() {
+        fontSizeRoot();
+
+    };
+</script>
+</body>
+
+</html>

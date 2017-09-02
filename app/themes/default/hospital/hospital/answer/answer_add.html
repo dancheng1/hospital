@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="public\answer\css\style.css" />
+    <link rel="stylesheet" href="public\evaluate\css\style.css" />
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="public/answer/js/jquery.SuperSlide.2.1.1.js" ></script>
+    <style>
+        form{padding: 0.3rem 0.5rem;}
+        form input,form textarea{border: 1px solid #ddd;box-sizing: border-box;padding: 0.2rem;border-radius: 0.2rem;display: block;width: 98%;margin: 0.2rem auto 0;}
+        form textarea{height: 7rem;resize: none;}
+        .submit{width: 40%;color: #fff;margin-top: 0.2rem;background: #339ee2;border: none;}
+    </style>
+</head>
+
+<body>
+<div class="box">
+    <div class="head">
+        <span class="bt-wz">提问</span>
+    </div>
+    <form action="index.php?i=2&c=hospital&a=answer&do=list&id=0&pd=add" method="post"><br/>
+        问题标题：<br /><input type="text" name="title" placeholder="请输入提问的标题" /><br/>
+        问题详情：<br /><textarea name="question" placeholder="请描述您的问题" ></textarea><br/>
+        <input type="submit" value="提交" class="submit">
+    </form>
+
+
+    <script>
+        function fontSizeRoot() {
+            var ele = document.getElementsByTagName("html")[0];
+            var kl = document.body.clientWidth;
+            console.log(kl)
+            if(kl >= 768) {
+                kl = 768
+            }
+            var size = kl / 320 * 20;
+            ele.style.fontSize = size + "px"
+        }
+        fontSizeRoot();
+        window.onresize = function() {
+            fontSizeRoot();
+        };
+    </script>
+    <div class="foot">版权所有 公主岭市妇幼保健院</div>
+</div>
+</body>
+</html>

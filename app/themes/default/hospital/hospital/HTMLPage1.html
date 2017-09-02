@@ -1,0 +1,130 @@
+﻿<!-- 重点参数：infoTitle, infoBody -->
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/overlay/SimpleInfoWindow/examples/events.html -->
+    <base href="http://webapi.amap.com/ui/1.0/ui/overlay/SimpleInfoWindow/examples/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>医院地址位置</title>
+    <style>
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    
+    p.my-desc {
+        margin: 5px 0;
+        line-height: 150%;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/javascript" language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=736ee15f242085b54b92927303b7752b"></script>
+    <!-- UI组件库 1.0 -->
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.10"></script>
+    <script type="text/javascript">
+        var geolocation;
+        var strLng, strLat;
+
+        //创建地图
+        var map = new AMap.Map('container', {
+            //resizeEnable: true,
+            center: [124.825959, 43.509963],
+            zoom: 10
+
+        });
+
+        /***************************************
+         由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+         ***************************************/
+
+        map.plugin('AMap.Geolocation', function () {
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true, //是否使用高精度定位，默认:true
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                zoomToAccuracy: false,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                buttonPosition: 'RB'
+            });
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition();
+            AMap.event.addListener(geolocation, 'complete', onComplete); //返回定位信息
+            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        });
+        //解析定位结果
+        function onComplete(data) {
+
+            strLng = data.position.getLng();
+            strLat = data.position.getLat();
+
+            var str = ['定位成功'];
+            //str.push('经度：' + data.position.getLng());
+            //str.push('纬度：' + data.position.getLat());
+            // if (data.accuracy) {
+            //    str.push('精度：' + data.accuracy + ' 米');
+            // } //如为IP精确定位结果则没有精度信息
+            // str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+            // document.getElementById('tip').innerHTML = str.join('<br>');
+        }
+        //解析定位错误信息
+        function onError(data) {
+            //document.getElementById('tip').innerHTML = '定位失败';
+        }
+
+        AMapUI.loadUI(['overlay/SimpleInfoWindow'], function (SimpleInfoWindow) {
+            var marker = new AMap.Marker({
+                map: map,
+                zIndex: 9999999,
+                //position: map.getCenter()
+                position: [124.831422,43.500294]
+            });
+
+            var infoWindow = new SimpleInfoWindow({
+
+                infoTitle: '<strong>公主岭市妇幼保健院</strong>',
+
+                infoBody: '<p class="my-desc">吉林省公主岭市公伊路14号 </p><button class="mybtn">去这里</button>',
+
+                //基点指向marker的头部位置
+                offset: new AMap.Pixel(0, -31)
+            });
+
+            infoWindow.get$Container().on('click', function (event) {
+		    //window.location.href = 'https://m.amap.com/navigation/index/saddr=125.428069%2C43.790541%2C我的位置&daddr=124.8314221%2C43.5002943%2C公主岭市妇幼保健院&daddr_lonlat=124.8314221%2C43.5002943%2C公主岭市妇幼保健院&daddr_poiid=B01AF0ZDGL&daddr_typecode=150200';
+
+            });
+
+            infoWindow.get$InfoTitle().on('click', function (event) {
+
+                //阻止冒泡
+                event.stopPropagation();
+                //window.location.href = 'https://m.amap.com/navigation/index/saddr=125.428069%2C43.790541%2C我的位置&daddr=124.8314221%2C43.5002943%2C公主岭市妇幼保健院&daddr_lonlat=124.8314221%2C43.5002943%2C公主岭市妇幼保健院&daddr_poiid=B01AF0ZDGL&daddr_typecode=150200';
+
+
+            });
+
+            infoWindow.get$InfoBody().on('click', '.mybtn', function (event) {
+
+//                alert(strLng);
+//                alert(strLat);
+
+                //阻止冒泡
+                event.stopPropagation();
+                window.location.href = 'https://m.amap.com/navigation/index/saddr='+strLng+'9%2C'+strLat+'1%2C我的位置&daddr=124.8314221%2C43.5002943%2C公主岭市妇幼保健院&daddr_lonlat=124.8314221%2C43.5002943%2C公主岭市妇幼保健院&daddr_poiid=B01AF0ZDGL&daddr_typecode=150200';
+
+            });
+
+            //infoWindow.open(map, map.getCenter())
+            infoWindow.open(map, [124.831422,43.500294]);
+        });
+    </script>
+</body>
+
+</html>

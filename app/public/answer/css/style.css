@@ -1,0 +1,29 @@
+/*reset css*/
+*,::before,::after{margin: 0;padding: 0;-webkit-tap-highlight-color: transparent;-webkit-box-sizing: border-box;/*兼容*/box-sizing: border-box;font-size: 0.6rem;}
+body{font-family: "微软雅黑",sans-serif;color: #333;}
+a{color: #333333;text-decoration: none;}
+a:hover{text-decoration: none;}
+ul,ol,li{height: auto;overflow: hidden;}
+input{border: none;outline: none;-webkit-appearance: none;}
+ul,ol,li{list-style: none;}
+div{height: auto;overflow: hidden;}
+/*common css*/
+.box{width: 100%;max-width: 640px;min-width: 300px;margin: 0 auto;background: #FFFFFF;position: relative;}
+.fl{float: left;}
+.fr{float: right;}
+.contain{padding: 0 0.5rem;height: auto;overflow: hidden;margin-bottom: 0.5rem;}
+/*清除浮动*/
+.clearfix::before,.clearfix::after{content: "";height: 0;line-height: 0;display: block;visibility: hidden;clear: both;}
+/*主体盒子*/
+
+/* 本例子css */
+.slideTxtBox .hd{width: 100%;background: #339ee2; }
+.slideTxtBox .hd ul{width: 100%;background: #339ee2;}
+.slideTxtBox .hd ul li{ width: 33.33%;float: left;height: 2rem;line-height: 2rem;text-align: center;color: #fff;font-size: 0.7rem;}
+.slideTxtBox .hd ul li.on{ color: #eeeeee;background: #168dd9; }
+.slideTxtBox .bd ul{ zoom:1;  }
+.slideTxtBox .bd li{ height: auto;border-bottom: 1px solid #ddd;padding: 0.5rem;  }
+.slideTxtBox .bd li a{display: block;float:left;width: 85%;font-weight:bold;}
+.slideTxtBox .bd li span{font-size: 0.6rem;color: #999;font-weight: 500;padding-left: 0.1rem;}
+.slideTxtBox .bd li img{float: right;width: 0.8rem;margin-top: 0.1rem;}
+.slideTxtBox .bd li div{height: auto;overflow: hidden;width: 100%;clear: both;display: none;font-size: 0.6rem;color: #bbb;line-height: 0.8rem;padding-bottom: 0.2rem;margin-top: -0.2rem;}

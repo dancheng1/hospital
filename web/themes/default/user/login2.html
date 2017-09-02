@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{template 'common/header-base'}
+<html>
+<head>
+    <title>公主岭市妇幼保健院管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="./resource/login/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="./resource/login/css/style.css" rel='stylesheet' type='text/css'/>
+</head>
+<body>
+
+
+<div style="height:100%">
+
+
+    <!--start-header-->
+    <div class="header" id="home">
+        <div class="container" style="margin:0 0 0 0;">
+            <div style="margin:1% 0 1% 40%;">
+                <p style="color:white; font-size:28px; font-weight:800; margin-top:0%;">公主岭市妇幼保健院管理系统</p>
+            </div>
+        </div>
+    </div>
+    <!--end-header-->
+
+    <!--start-banner-->
+    <div class="banner" style="height:90%;">
+        <div class="container">
+            <div class="banner-top" style="margin-left:23%;">
+
+                <div style="margin-left:40%;">
+                    <p style="color: #000;font-size: 16px;font-weight: 700;">管理员登陆</p>
+                </div>
+                <form action="" method="post" role="form" id="form1" onsubmit="return formcheck();">
+
+                    <div class="banner-bottom">
+
+                        <div class="bnr-one">
+                            <div class="bnr-left">
+                                <p>用户名：</p>
+                            </div>
+                            <div class="bnr-right">
+                                <input class="text" name="username" type="text" value="" onFocus="this.value = '';">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="bnr-one">
+                            <div class="bnr-left">
+                                <p>密码：</p>
+                            </div>
+                            <div class="bnr-right">
+                                <input class="text" name="password" type="text" value="" onFocus="this.value = '';">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="bnr-btn">
+                            <input style="margin-left:69%; width:26%;" type="submit" value="Login">
+                            <input name="token" value="{$_W['token']}" type="hidden" />
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--end-banner-->
+
+    <!--start-header-->
+    <div style="background-color:black">
+        <div class="container" style="margin:0 0 0 0;">
+            <div style="margin:1% 0 1% 82%;">
+                <p style="color:white;font-size:12px; font-weight:700;">版权所有：公主岭市妇幼保健院</p>
+            </div>
+        </div>
+    </div>
+    <!--end-header-->
+
+</div>
+
+<script>
+
+    function formcheck() {
+
+        if($('#remember:checked').length == 1) {
+
+            cookie.set('remember-username', $(':text[name="username"]').val());
+
+        } else {
+
+            cookie.del('remember-username');
+
+        }
+
+        return true;
+
+    }
+
+    var h = document.documentElement.clientHeight;
+
+    $(".login").css('min-height',h);
+
+    $('#toggle').click(function() {
+
+        $('#imgverify').prop('src', '{php echo url('utility/code')}r='+Math.round(new Date().getTime()));
+
+        return false;
+
+    });
+
+    {if !empty($_W['setting']['copyright']['verifycode'])}
+
+    $('#form1').submit(function() {
+
+        var verify = $(':text[name="verify"]').val();
+
+        if (verify == '') {
+
+            alert('请填写验证码');
+
+            return false;
+
+        }
+
+    });
+
+    {/if}
+
+</script>
+
+
+
+</body>
+</html>

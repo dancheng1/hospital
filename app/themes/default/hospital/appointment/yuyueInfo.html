@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>我的</title>
+	<link rel="stylesheet" type="text/css" href="public/css/api.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/common.css" />
+
+    <style>
+    	html, body {width: 100%;min-height: 100%;background: #f0f0f0;}
+    	.h10 {height: 10px;background: #f0f0f0;}
+		.h1 {height: 1px;margin-left: 15px;background: #f0f0f0;}
+		.fr {float: right;}
+		.hint {color: #666;font-size: 12px;margin-right: 15px;}
+
+		.firstblock, .secondblock, .thirdblock {background-color: #fff;}
+		/* 头部登陆 */
+		.login {background-image: url(public/image/personal_bkg.jpg);background-repeat: no-repeat; background-size: contain;}
+		.loginbg {/*position: absolute;*/ width: 100%;}
+		.person_arrow {position: absolute;height: 20px; right: 10px; top: 90px;}
+
+		/* 设置条目 */
+		.item {height: 50px;line-height: 50px;padding-left: 15px;background-color: #fff;}
+		.item_ico {float: left;width: 30px;padding: 10px 10px 10px 0;}
+		.item_arrow {float: right;width: 16px;padding: 17px 15px 15px 0;}
+
+		.presshover {background-color: #E8E8E8;}
+
+
+    </style>
+
+
+    <style>
+
+     /* 头部样式 */
+     .topbar {background: #0054B4; height:50px; border-bottom: 1px solid #DDDFE3;}
+     .topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+     .hr01, .hr02 {height: 28px;}
+     .headerico {padding: 11px 15px 11px 15px;}
+     .headericohover {background: #DADDE0;}
+     .fr{float: right;}
+     .fl{float: left;}
+
+     /*第一头部*/
+     #logo {padding: 11px 0 0 10px;height: 28px;}
+     #citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+     .citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+    .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+    .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+    .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+    .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+     .swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+     .back {float: left; }
+     .back img {height: 30px;margin-top: 10px;margin-left: 10px;}
+     .topbar .title {line-height: 50px;text-align: center;font-size: 22px; color:#fff;}
+
+     .darktitle {height: 40px;line-height: 40px;margin-left: 15px;font-size: 14px;color: #666;}
+     </style>
+
+	<style>
+	html {height: 100%;}
+	body {height: 100%;background: #f0f0f0;}
+
+	input {height: 50px;font-size: 18px;color: #8E8C8C;width: 80%;}
+	input::-webkit-input-placeholder {color: #ccc;}
+	.divider {height: 15px;}
+	.email,.passwd {/*margin-top: 3px;*/background: #fff;}
+	.passwd img, .email img {vertical-align: top;}
+	.item {background-color: #fff; border-bottom: 1px solid #e0e0e0;position: relative;}
+	/*.email, .passwd, .btn {margin:3px 10px;}*/
+	.btn {margin:3px 10px;}
+	.btn {background: #0054B4;height: 40px; text-align: center; line-height: 40px; font-size: 20px;margin-top: 20px;border-radius: 5px;color: #fff;}
+	.btn button {color: #fff;}
+	.email img {width: 25px; margin-top: 15px; margin-left: 10px; margin-right: 9px;}
+	.passwd img {height: 25px;margin-top: 10px; margin-left: 10px;margin-right: 10px;}
+	.secretword img {height: 25px;margin-top: 10px; margin-left: 10px;margin-right: 10px;}
+
+	/* 底部样式 */
+	.bottom {/*position: absolute;bottom: 0;*/width: 100%; text-align: center;/*padding-bottom: 20px;*/font-size: 12px;}
+	.bottom img {height: 50px;}
+	.bottom .arrow {text-align: center;margin: 10px 0;}
+	.bottom .arrow img {width: 40px;height: 20px;}
+	#qqpic {margin-right: 10px; margin-left: 10px;}
+	.thirdinfo {color: #666;margin-top: 10px;}
+
+	.secretword input {width: 50%;}
+	.secretimg {position: absolute; right: 0; top: 0; height: 56px; margin-right: 10px; border-left: 1px solid #e0e0e0;}
+	.secretimg img {height: 60%;}
+
+	.thirdcompy .left {margin-right: 20px;}
+	.thirdcompy .left , .thirdcompy .right {width: 40%; display: inline-block;background: #fff;border: 1px solid #e0e0e0;border-radius: 4px;vertical-align: top;text-align: left; font-size: 18px;}
+	.thirdcompy .left img , .thirdcompy .right img {width: 30px;height: 30px;float: left;margin: 5px 10px;}
+	.thirdcompy span {line-height: 40px;color: #666;}
+
+	.loginmore {margin-top: 10px;}
+	.loginmore span {color: #0078ff;}
+	.loginmore .forget {margin-left: 10px;}
+	.loginmore .phone {margin-right: 10px;float: right;}
+
+	.btnhover {background-color: #dcdcdc !important;}
+	.buyhover {background-color: rgba(252, 85, 0, 0.6) !important;}
+	.presshover {background-color: #FAFAFA !important;}
+	.txthover {color: rgba(0, 120, 255, 0.6) !important;}
+	input {outline: none;}
+</style>
+	<style>
+		/*head*/
+		.head{height: 3rem;line-height: 2rem;background: rgb(66,139,202);text-align: center;position: relative;}
+		.head span{color:#fff;display: inline-block;}
+		.head span.bt-wz{font-size: 1.2rem;padding-top: 8px;}
+		.head span.bt-back{background: url('public/evaluate/images/left.png') center no-repeat;height: 100%;width: 0.8rem;position: absolute;left: 0.6rem;background-size: 1.4rem;}
+
+		/*foot*/
+		.foot{height:2rem;line-height:2rem;font-size: 0.8rem;color: #fff;text-align: center;background: rgb(66,139,202);position: fixed;left: 0;bottom: 0;width: 100%;}
+		#submit{display: none;}
+	</style>
+
+	<script>
+        function checkForm() {
+            var str=document.getElementById('email');
+            if(document.getElementById('Password1').value == ""){
+                alert("姓名不能为空");
+                return false;
+            }
+            if(str.value == '') {
+                alert('手机号码不能为空');
+                return false;
+            }
+            if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(str.value))) {
+                alert('请输入正确的手机号码!');
+                document.getElementById("email").value = "";
+                return false;
+            }
+            if(/^1[3|4|5|8][0-9]\d{4,8}$/.test(str.value)) {
+                console.log(str.value)
+                document.getElementById("submit").click();
+            }
+
+        }
+
+        var regex = {
+            mobile: /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
+        }
+
+	</script>
+
+</head>
+<body>
+	<!-- 第一块 -->
+      <!-- 第三头部 -->
+      <div id="thridHeader" class="titlebar">
+        <div style="background: rgb(66,139,202);" class="topbar whitebar">
+          <div class="back"  tapmode="" onclick="location.href='index.php?i=2&c=hospital&a=appointment&do=list&id=3&doctor_id=<?php echo $doctor_id; ?>'">
+			  <img src="public/image/ic_home_back_u.png" alt="">
+		  </div>
+          <div class="title" id="title"><?php echo $time; ?></div>
+        </div>
+      </div>	
+
+	<!-- 第二块 -->
+	<div class="darktitle">预约信息：</div>
+	<div class="secondblock">
+		<div class="item" tapmode="presshover" onclick="openLogin()">
+			<span>挂号科室</span>
+            <span class="fr hint"><?php echo $section['name']; ?></span>
+		</div><div class="h1"></div>
+		<div class="item" tapmode="presshover" onclick="openLogin()">
+			<span>科室区域</span>
+            <span class="fr hint"><?php echo $section['addr']; ?></span>
+		</div><div class="h1"></div>
+		<div class="item" tapmode="presshover" onclick="openLogin()">
+			<span>挂号医生</span>
+            <span class="fr hint"><?php echo $doctor['name']; ?></span>
+		</div><div class="h1"></div>
+		<div class="item" tapmode="presshover" onclick="openLogin()">
+			<span>就诊日期</span>
+            <span class="fr hint"><?php echo date('Y-', time()); echo $time; ?></span>
+		</div><div class="h1"></div>
+        <div class="item" tapmode="presshover" onclick="openLogin()">
+			<span>医事服务费</span>
+            <span class="fr hint" style="color:Orange">¥50元</span>
+		</div>
+	</div>
+    
+	<!-- 第二块 -->
+	<div class="darktitle">就诊人信息：</div>
+
+    <form action="index.php?i=2&c=hospital&a=appointment&do=list&id=0" method="post">
+		<input type="hidden" name="doctor_id" value="<?php echo $doctor_id; ?>" />
+		<input type="hidden" name="order_date" value="<?php echo $time; ?>" />
+		<div class="item passwd">
+			<img src="public/image/login02.png" alt="">
+			<input type="text" name="name" placeholder="姓名" id="Password1">
+		</div>
+		<div class="item email">
+			<img src="public/image/login01.png" alt="">
+			<input type="tel" name="phone" placeholder="手机号" id="email" maxlength="11" minlength="11">
+		</div>
+		<div class="btn" tapmode="buyhover" onclick="checkForm();">立即预约</div>
+		<button type="submit" id="submit">立即预约</button>
+
+		
+	</form>
+
+
+	<div class="h10"></div><div class="h10"></div>
+</body>
+<script type="text/javascript" src="public/script/api.js"></script>
+<script type="text/javascript">
+
+	function openLogin()
+	{
+		api.openWin({
+			name: 'login',
+			url: './login_header.html',
+			bounces: false,
+			delay:200
+		});
+	}
+
+</script>
+</html>

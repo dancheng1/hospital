@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="public\evaluate\css\style.css" />
+    <link rel="stylesheet" href="public\evaluate\css\dropload.css" />
+    <script type="text/javascript" src="public\evaluate\js\jquery.min.js" ></script>
+    <style>
+        /*评价列表*/
+        .pjlb{padding: 0.3rem 0.5rem;}
+        .pjlb li{border-bottom: 1px dashed #ddd;padding: 0.2rem 0 0.5rem;margin-bottom: 0.2rem;}
+        .pjlb li>div:first-child{width: 15%;float: left;text-align: center;}
+        .pjlb li>div:last-child{width: 85%;float: left;}
+        .pjlb li>div:first-child img{width: 1.8rem;height:1.8rem;border-radius: 50%;}
+        .pjlb li>div:last-child p{margin: 0.2rem 0 0 0.3rem;}
+        .pjlb li>div:last-child b{margin: 0.1rem 0 0 0.3rem;font-weight: normal;color: #bbb;font-size: 0.6rem;float: left;line-height: normal;}
+        .pjlb li>div:last-child span{line-height: 0.9rem;color: #888;font-size: 0.65rem;}
+        .ysxx{padding: 0.3rem 0.5rem;}
+        .ysxx img{width: 6rem;height: 8rem;border-radius: 0.2rem;}
+        .ysxx .yszp{width: 43%;float: left;}
+        .ysxx .ysxm{width: 57%;float: left;}
+        .ysxm{padding-top: 0.3rem;}
+        .ysxm p{margin-bottom: 0.2rem;}
+        .ysms{color: #888;}
+        .xing{margin-left: 0.3rem;}
+        .pjlb li>div:last-child .xing span {nt-size: 0.9rem;color: #35a1ff;}
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="box">
+    <div class="head">
+        <span class="bt-back" onclick="history.go(-1)"></span>
+        <span class="bt-wz">查看对<?php echo $doctor['name']; ?>的评价</span>
+    </div>
+    <div class="ysxx">
+        <div class="yszp"><img src="../web/<?php echo $doctor['img_url']; ?>" /></div>
+        <div class="ysxm">
+            <p>姓名： <?php echo  $doctor['name']; ?></p>
+            <p>职称：<?php echo  $section['name'];?>
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <?php
+                    switch($doctor['level']){
+                        case 1:
+                            echo '教授';
+                            break;
+                        case 2:
+                            echo '副教授';
+                            break;
+                        case 3:
+                            echo '主任医生';
+                            break;
+                    }
+                ?>
+            </p>
+            <P>描述： <span class="ysms"><?php echo $doctor['intro']; ?></span></P>
+
+        </div>
+    </div>
+    <input type="hidden" name="Atype" id="doctor_id" value="<?php echo $doctor['id']; ?>" />
+
+
+    <div class="content" id="main">
+        <ul id="list_box" class="pjlb"></ul>
+    </div>
+
+
+    <script src="public\evaluate\js\dropload.min.js"></script>
+    <script>
+        function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
+        $(function(){
+            var doctor_id = $('#doctor_id').val();
+            // 页数
+            var page = 0;
+            // 每页展示8个
+            var size = 8;
+
+            var i=1;
+
+            // dropload
+            $('.content').dropload({
+                scrollArea : window,
+                loadDownFn : function(me){
+                    page++;
+                    // 拼接HTML
+                    var result = '';
+                    $.ajax({
+                        type: 'GET',
+                        url:'index.php?i=2&c=hospital&a=evaluate&do=list&id=4&page=' + page + '&psize=' + size + '&doctor_id=' + doctor_id,
+                        dataType: 'json',
+                        success: function(data){
+                            var arrLen = data.length;
+                            if(arrLen > 0){
+                                for(var i=0; i<arrLen; i++){
+                                    var str = GetCitys(data[i].evaluate_user_id);
+                                    console.log(str);
+                                    console.log(JSON.parse(str));
+                                    var jsonstr = JSON.parse(str);
+                                    result +=   '<li class="'+data[i].scorce+'"><div><img src="'+ jsonstr.avatar +'" /></div><div>';
+                                    result += '<p>用户名称:<span>'+ jsonstr.nickname +'</span></p>';
+                                    result +='<p>评论：<span>'+ data[i].evaluate_note+'</span></p>';
+                                    result +='<div class="xing"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>';
+                                    //显示时间
+//                                    var newDate=new Date();
+//                                    newDate.setTime(data[i].evaluate_date);
+
+                                    result +='<b>'+getLocalTime(data[i].evaluate_date)+'</b></div></li>';
+                                }
+                                // 如果没有数据
+                            }else{
+                                // 锁定
+                                me.lock();
+                                // 无数据
+                                me.noData();
+                            }
+                            // 为了测试，延迟1秒加载
+                            setTimeout(function(){
+                                // 插入数据到页面，放到最后面
+                                $('#list_box').append(result);
+                                // 每次数据插入，必须重置
+                                me.resetload();
+
+                                if ($('.firstblock').length > 0){
+                                    if (parseInt($('.content').css('height')) <= $(window).height()){
+                                        if ($('.dropload-noData').text() == '暂无数据'){
+                                            $('.dropload-down').css('display','none');
+                                        }
+                                    }
+                                }
+
+                                $('.pjlb li').each(function () {
+                                    $(this).attr('id',i);
+                                    i++;
+                                    var starNum = parseInt($(this).prop("className"))/20;
+                                    for(var i=1;i<=5;i++) {
+                                        $(this).find(".xing span:lt("+starNum+")").text("★");
+                                    }
+                                })
+
+                            },1000);
+                        },
+                        error: function(xhr, type){
+                            console.log('Ajax error!');
+                            // 即使加载出错，也得重置
+                            me.resetload();
+                        }
+                    });
+                }
+            });
+
+            //第二次请求 查表
+            function GetCitys(evaluate_user_id) {
+                var str = '';
+                $.ajax({
+                    type: "post",
+                    url:'index.php?i=2&c=hospital&a=evaluate&do=list&id=5&evaluate_user_id' + evaluate_user_id,
+                    datatype: "json",
+                    data:{'evaluate_user_id':evaluate_user_id},
+                    async: false,//注意！！这个为必要的参数，不然这个会在上面的Ajax请求后才执行
+                    success: function (data) {
+                        str = data;
+                    }
+                });
+                return str;
+            }
+
+        });
+
+    </script>
+
+    <div class="foot">版权所有 公主岭市妇幼保健院</div>
+</div>
+<script>
+    function fontSizeRoot() {
+        var ele = document.getElementsByTagName("html")[0];
+        var kl = document.body.clientWidth;
+        if(kl >= 768) {
+            kl = 768
+        }
+        var size = kl / 320 * 20;
+        ele.style.fontSize = size + "px"
+    }
+    fontSizeRoot();
+
+    window.onresize = function() {
+        fontSizeRoot();
+
+    };
+</script>
+</body>
+</html>

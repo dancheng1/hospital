@@ -1,0 +1,57 @@
+*,::before,::after{margin: 0;padding: 0;-webkit-tap-highlight-color: transparent;-webkit-box-sizing: border-box;box-sizing: border-box;font-size: 0.7rem;}
+body{font-family: "微软雅黑",sans-serif;color: #333;}
+a{color: #333333;text-decoration: none;}
+a:hover{text-decoration: none;}
+ul,ol,li{height: auto;overflow: hidden;}
+input{border: none;outline: none;-webkit-appearance: none;}
+ul,ol,li{list-style: none;}
+div{height: auto;overflow: hidden;}
+.box{width: 100%;max-width: 640px;min-width: 300px;margin: 0 auto;background: #FFFFFF;position: relative;padding-bottom: 1.5rem;}
+.fl{float: left;}
+.fr{float: right;}
+.contain{padding: 0 0.5rem;height: auto;overflow: hidden;margin-bottom: 0.5rem;}
+.clearfix::before,.clearfix::after{content: "";height: 0;line-height: 0;display: block;visibility: hidden;clear: both;}
+
+/*head*/
+.head{height: 2rem;line-height: 2rem;background: #339ee2;text-align: center;position: relative;}
+.head span{color:#fff;display: block;line-height: 2rem;width: 100%;text-align: center;}
+.head span.bt-wz{font-size: 0.8rem;}
+.head span.bt-back{background: url('../images/left.png') center no-repeat;height: 100%;width: 0.8rem;position: absolute;left: 0.6rem;background-size: 1.4rem;}
+
+/*foot*/
+.foot{height:1.5rem;line-height:1.5rem;font-size: 0.55rem;color: #fff;text-align: center;background: #339ee2;position: fixed;left: 0;bottom: 0;width: 100%;}
+
+/*医生列表*/
+.bmx li{padding: 0.5rem;position: relative;}
+.bmx li:nth-child(even){background: #dff0ff;}
+.bmx li:nth-child(odd){background: #eef5fb;}
+.bmx li img{width: 2.1rem;height: 2.8rem;float: left;}
+.bmx li div:first-child{width: 18%;position: absolute;top: 50%;margin-top: -1.5rem;left: 0.7rem;}
+.bmx li div:last-child{width: 82%;float: right;display: block;}
+.bmx li div:last-child p:first-child{font-size: 0.72rem;color: #000;line-height: 0.9rem;}
+.bmx li div:last-child span{color: #888;padding-left: 0.2rem;font-size: 0.62rem;display: inline-block;}
+.bmx li div:last-child p:last-child{color:#888;padding: 0.1rem 0;font-size: 0.62rem;line-height: 0.9rem;}
+.yytab span{display: block;width: 50%;float: left;text-align: center;border-bottom: 1px solid #DDDDDD;line-height: 1.6rem;margin-bottom: 0.2rem;}
+.yytab span.on{border-bottom: 3px solid rgb(135, 200, 255);color: rgb(135, 200, 255);}
+
+/*医生评价*/
+.pjbd{display: block;width: 90%;margin: 0.5rem auto;}
+.yspj h2{width: 90%;margin: 0.5rem auto;font-size: 0.7rem;}
+.yspj h2 a{font-weight: normal;color: #797979;display: inline-block;float: right;}
+.inp{margin: 0.2rem 0;line-height: 0.9rem;}
+.pxj label,.pxj div{float: left;}
+.pxj div{width: 80%;}
+.pll label{display: block;margin-bottom: 0.2rem;}
+.plkk{width: 100%;resize: none;height: 8rem;border-color: #ccc;box-sizing: border-box;padding: 0.2rem;}
+.submit{width: 40%;margin: 0.5rem auto;display: block;line-height: 1.4rem;background: #339ee2;color: #fff;}
+.xing span{font-size: 0.9rem;color: #35a1ff;}
+
+/*搜索框*/
+.search{margin: 0.3rem auto;width: 96%; text-align: center;}
+.search form{height: auto;overflow: hidden;display: block;}
+.search input{display: inline-block;float: left;margin-top: 0.1rem;}
+.search input:first-child{width:84%;height: 1.1rem;border-radius: 0.5rem;border: 1px solid #ddd;box-sizing: border-box;padding: 0.1rem 0.2rem;margin-right: 0.3rem;}
+.dtwd input:first-child{width: 74%;}
+.search input[type='submit']{color: #fff;  background: #62c1fd;  padding: 0.1rem 0.2rem;  font-size: 0.65rem;margin-right: 0.2rem;}
+.search input[type='button']{color: #fff;  background: #62c1fd;  padding: 0.1rem 0.2rem;  font-size: 0.65rem;margin-right: 0;float: right;}
+.search span{text-align: right;}

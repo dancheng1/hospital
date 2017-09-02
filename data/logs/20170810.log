@@ -1,0 +1,160 @@
+2017-08-10 08:52:49 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502326369</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-10 08:52:49 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502326369',
+    'msgtype' => 'text',
+    'content' => '测试内容',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502326369',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-10 08:52:49 response :
+------------
+
+2017-08-10 08:52:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502326375</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-10 08:52:56 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502326375',
+    'msgtype' => 'text',
+    'content' => '测试内容',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502326375',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-10 08:52:56 response :
+------------
+
+2017-08-10 08:52:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502326377</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-10 08:52:57 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502326377',
+    'msgtype' => 'text',
+    'content' => '测试内容',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502326377',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-10 08:52:57 response :
+------------
+
+2017-08-10 08:52:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502326377</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-10 08:52:57 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502326377',
+    'msgtype' => 'text',
+    'content' => '测试内容',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502326377',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-10 08:52:57 response :
+------------
+
+2017-08-10 08:52:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1502326377</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2017-08-10 08:52:57 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1502326377',
+    'msgtype' => 'text',
+    'content' => '测试内容',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1502326377',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2017-08-10 08:52:57 response :
+------------
+

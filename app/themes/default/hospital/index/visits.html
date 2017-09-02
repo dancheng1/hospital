@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title></title>
+
+		<script src="public/visits/js/jquery-1.9.1.min.js"></script>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0
+			}
+			
+			html,
+			body {
+				width: 100%;
+				min-height: 100%;
+				overflow-y: auto;
+			}
+			
+			.selBtn {
+				height: 32px;
+				line-height: 32px;
+				margin-top: 4px;
+				/*width: 120px;*/
+				border-radius: 5px;
+				outline: none;
+				padding-left: 5px;
+				background: url("public/visits/images/bg2.png") repeat-x left center;
+			}
+			#select1{width: 120%;}
+			
+			.footer {
+				color: #fff;
+				width: 100%;
+				line-height: 25px;
+				height: 25px;
+				background: #339ee2;
+				left: 0;
+				bottom: 0;
+				font-size: 12px;
+			}
+			
+			.fixed {
+				position: fixed;
+			}
+			
+			.caption {
+				border: 1px solid #ddd;
+				border-bottom: none;
+				text-align: left;
+				padding-left: 5px;
+				background: #dff0ff;
+				color:#64b5fb;
+			}
+			
+			.fangDaJing {
+				background: url(public/evaluate/images/ser.png) no-repeat center center;
+				/*background: url(public/visits/images/ser.png center no-repeat);*/
+				width: 40px;
+				height: 32px;
+				top: 0px;
+				right: 0px;
+				border-radius: 20px;
+				border: 0px solid #000;background-size: 30px;
+			}
+			
+			.table-c {
+				width: 100%;
+				font-size: 13px;
+				margin-top: 10px;
+			}
+			
+			.table-c table {
+				border-right: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				background: #fff;
+			}
+			
+			.table-c table td {
+				border-left: 1px solid #ddd;
+				border-top: 1px solid #ddd
+			}
+			
+			.shuRuKeShiMing {
+				border-radius: 5px;
+				padding-left: 5px;
+				width: 95%;
+				float: left;
+				display: inline-block;
+				height: 32px;
+				font-size: 14px;
+				line-height: 32px;
+				border: none;
+			}
+			
+			.shouSuo {
+				border: none;
+				width: 48px;
+				height: 32px;
+				border-radius: 18px;
+				background: url('public/visits/images/bg2.png') repeat-x left center;
+			}
+			
+			.frInput {
+				width: 145px;
+				height: 32px;
+				margin-top: 4px;
+			}
+			
+			.TC {
+				text-align: center;
+			}
+			
+			.select2 {
+				left: 0;
+				width: 125px;
+				background: #fff;
+			}
+			
+			.select2 li {
+				border-bottom: 1px solid #DDDDDD;
+			}
+
+			#select2{width: 100%;}
+
+			.h10 {
+				height: 10px;
+				background: #f0f0f0;
+			}
+			
+			.h1 {
+				height: 1px;
+				margin-left: 15px;
+				background: #f0f0f0;
+			}
+			
+			.fr {
+				float: right;
+			}
+			
+			.hint {
+				color: #666;
+				font-size: 12px;
+				margin-right: 15px;
+			}
+			
+			.firstblock,
+			.secondblock,
+			.thirdblock {
+				background-color: #fff;
+			}
+			/* 头部登陆 */
+			
+			.login {
+				background-image: url('public/image/personal_bkg.jpg');
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
+			
+			.loginbg {
+				/*position: absolute;*/
+				width: 100%;
+			}
+			
+			.person_arrow {
+				position: absolute;
+				height: 20px;
+				right: 10px;
+				top: 90px;
+			}
+			/* 设置条目 */
+			
+			.item {
+				height: 50px;
+				line-height: 50px;
+				padding-left: 15px;
+				background-color: #fff;
+			}
+			
+			.itemtextarea {
+				height: 105px;
+				line-height: 50px;
+				padding-top: 15px;
+				background-color: #fff;
+				box-sizing: border-box;
+				display: block;
+			}
+			
+			.item_ico {
+				float: left;
+				width: 30px;
+				padding: 10px 10px 10px 0;
+			}
+			
+			.item_arrow {
+				float: right;
+				width: 16px;
+				padding: 17px 15px 15px 0;
+			}
+			
+			.presshover {
+				background-color: #E8E8E8;
+			}
+			
+			.posiAbs {
+				position: absolute;
+			}
+			
+			.posiRel {
+				position: relative;
+			}
+			
+			.textarea {
+				display: block;
+				box-sizing: border-box;
+				width: 100%;
+				word-break: break-all;
+				padding-left: 15px;
+			}
+			
+			.btn1 {
+				top: 0px;
+				left: 124px;
+				height: 32px;
+				width: 17px;
+				background: #686868;
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+			
+			.downArrow {
+				top: 14px;
+				left: 3px;
+				width: 0;
+				height: 0;
+				border: 5px solid #fff;
+				border-left-color: rgba(0, 0, 0, 0);
+				border-bottom-color: rgba(0, 0, 0, 0);
+				border-right-color: rgba(0, 0, 0, 0);
+			}
+		</style>
+
+		<style>
+			/* 头部样式 */
+			
+			.topbar {
+				background: #339ee2;
+				height: 50px;
+				border-bottom: 1px solid #DDDFE3;
+			}
+			
+			.topbar_title {
+				display: inline-block;
+				font-size: 20px;
+				line-height: 50px;
+				padding-left: 12px;
+			}
+			
+			.hr01,
+			.hr02 {
+				height: 28px;
+			}
+			
+			.headerico {
+				padding: 11px 15px 11px 15px;
+			}
+			
+			.headericohover {
+				background: #DADDE0;
+			}
+			
+			.fr {
+				float: right;
+			}
+			
+			.fl {
+				float: left;
+			}
+			/*第一头部*/
+			
+			#logo {
+				padding: 11px 0 0 10px;
+				height: 28px;
+			}
+			
+			#citylist {
+				height: 50px;
+				line-height: 50px;
+				padding-left: 15px;
+				font-size: 18px;
+				color: #fff;
+			}
+			
+			.citylistarrow {
+				vertical-align: top;
+				width: 20px;
+				padding-top: 15px;
+			}
+			
+			.search {
+				height: 34px;
+				line-height: 34px;
+				padding-left: 10px;
+				border-radius: 30px;
+				margin-top: 8px;
+				position: absolute;
+				left: 20px;
+				right: 60px;
+				font-size: 14px;
+			}
+			
+			.search img:first-child {
+				vertical-align: top;
+				width: 20px;
+				padding-top: 7px;
+				padding-right: 10px;
+			}
+			
+			.search img:last-child {
+				vertical-align: top;
+				width: 20px;
+				padding-top: 7px;
+			}
+			
+			.firstSearch {
+				left: 90px;
+				right: 60px;
+				background-color: #FA6604;
+				color: #FDC29B;
+			}
+			
+			.swipe {
+				line-height: 50px;
+				margin-right: 10px;
+				color: #FF8400;
+			}
+			
+			.back {
+				float: left;
+			}
+			
+			.back img {
+				height: 35px;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			
+			.topbar .title {
+				line-height: 50px;
+				text-align: center;
+				font-size: 22px;
+				color: #fff;
+			}
+			
+			.darktitle {
+				height: 40px;
+				line-height: 40px;
+				font-size: 14px;
+				color: #666;
+				padding: 0 5px;
+				background: #f0f0f0;
+		}
+			tr,td,.caption{height: 40px;line-height: 40px;}
+			.caption{text-indent: 15px;font-size: 15px;}
+		</style>
+	
+		<style>
+			html {
+				height: 100%;
+			}
+			
+			body {
+				height: 100%;
+				padding-bottom: 25px;
+				box-sizing: border-box;
+			}
+			
+			input {
+				height: 50px;
+				font-size: 18px;
+				color: #8E8C8C;
+				width: 80%;
+			}
+			
+			input::-webkit-input-placeholder {
+				color: #ccc;
+			}
+			
+			.divider {
+				height: 15px;
+			}
+			
+			.email,
+			.passwd {
+				/*margin-top: 3px;*/
+				background: #fff;
+			}
+			
+			.passwd img,
+			.email img {
+				vertical-align: top;
+			}
+			
+			.item {
+				background-color: #fff;
+				border-bottom: 1px solid #e0e0e0;
+				position: relative;
+			}
+			/*.email, .passwd, .btn {margin:3px 10px;}*/
+			
+			.btn {
+				margin: 3px 10px;
+			}
+			
+			.btn {
+				background: #0054B4;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				font-size: 20px;
+				margin-top: 20px;
+				border-radius: 5px;
+			}
+			
+			.btn button {
+				color: #fff;
+			}
+			
+			.email img {
+				width: 25px;
+				margin-top: 15px;
+				margin-left: 10px;
+				margin-right: 9px;
+			}
+			
+			.passwd img {
+				height: 25px;
+				margin-top: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			
+			.secretword img {
+				height: 25px;
+				margin-top: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			/* 底部样式 */
+			
+			.bottom {
+				/*position: absolute;bottom: 0;*/
+				width: 100%;
+				text-align: center;
+				/*padding-bottom: 20px;*/
+				font-size: 12px;
+			}
+			
+			.bottom img {
+				height: 50px;
+			}
+			
+			.bottom .arrow {
+				text-align: center;
+				margin: 10px 0;
+			}
+			
+			.bottom .arrow img {
+				width: 40px;
+				height: 20px;
+			}
+			
+			#qqpic {
+				margin-right: 10px;
+				margin-left: 10px;
+			}
+			
+			.thirdinfo {
+				color: #666;
+				margin-top: 10px;
+			}
+			
+			.secretword input {
+				width: 50%;
+			}
+			
+			.secretimg {
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 56px;
+				margin-right: 10px;
+				border-left: 1px solid #e0e0e0;
+			}
+			
+			.secretimg img {
+				height: 60%;
+			}
+			
+			.thirdcompy .left {
+				margin-right: 20px;
+			}
+			
+			.thirdcompy .left,
+			.thirdcompy .right {
+				width: 40%;
+				display: inline-block;
+				background: #fff;
+				border: 1px solid #e0e0e0;
+				border-radius: 4px;
+				vertical-align: top;
+				text-align: left;
+				font-size: 18px;
+			}
+			
+			.thirdcompy .left img,
+			.thirdcompy .right img {
+				width: 30px;
+				height: 30px;
+				float: left;
+				margin: 5px 10px;
+			}
+			
+			.thirdcompy span {
+				line-height: 40px;
+				color: #666;
+			}
+			
+			.loginmore {
+				margin-top: 10px;
+			}
+			
+			.loginmore span {
+				color: #0078ff;
+			}
+			
+			.loginmore .forget {
+				margin-left: 10px;
+			}
+			
+			.loginmore .phone {
+				margin-right: 10px;
+				float: right;
+			}
+			
+			.btnhover {
+				background-color: #dcdcdc !important;
+			}
+			
+			.buyhover {
+				background-color: rgba(252, 85, 0, 0.6) !important;
+			}
+			
+			.presshover {
+				background-color: #FAFAFA !important;
+			}
+			
+			.txthover {
+				color: rgba(0, 120, 255, 0.6) !important;
+			}
+			
+			input {
+				outline: none;
+			}
+		</style>
+		<style>
+			/*head*/
+			.head{height: 3rem;line-height: 2rem;background: rgb(66,139,202);text-align: center;position: relative;}
+			.head span{color:#fff;display: inline-block;}
+			.head span.bt-wz{font-size: 1.2rem;padding-top: 8px;}
+			.head span.bt-back{background: url('public/evaluate/images/left.png') center no-repeat;height: 100%;width: 0.8rem;position: absolute;left: 0.6rem;background-size: 1.4rem;}
+
+			/*foot*/
+			.foot{height:2rem;line-height:2rem;font-size: 0.8rem;color: #fff;text-align: center;background: rgb(66,139,202);position: fixed;left: 0;bottom: 0;width: 100%;}
+		</style>
+
+	</head>
+	<!-- 第一块 -->
+	<!-- 第三头部 -->
+
+	<body>
+		<!--头部-->
+		<div class="head">
+			<span class="bt-back" onclick="history.go(-1)"></span>
+			<span class="bt-wz">出诊信息</span>
+		</div>
+
+		<!--第一块-->
+		<div class="darktitle posiRel">
+			<div class="fl">
+				<div id="select1" class="fl selBtn posiRel"><span id="span1"><?php echo $show_date[0]; ?></span>
+					<ul id="select2" style="display: block;
+    border: 1px solid #DDDDDD;border-bottom:none;" class="posiAbs select2 TC">
+						<?php for($i = 0; $i < 7; $i++){ ?>
+							<li value="<?php echo $i; ?>"><?php echo $show_date[$i]; ?></li>
+						<?php } ?>
+					</ul>
+					<div id="btn1" class="btn1 fl posiAbs">
+						<div class="downArrow posiAbs"></div>
+					</div>
+				</div>
+			</div>
+			<div class="fr frInput posiRel">
+				<form action="index.php?i=2&c=hospital&a=index&do=visits&id=1" method="post">
+					<input value="<?php if($soso) echo $soso; ?>" name="soso" type="text" placeholder="输入科室名" class="shuRuKeShiMing" />
+					<input class="fangDaJing posiAbs" type="submit" value="" />
+					<!--<div class="fangDaJing posiAbs"></div>-->
+				</form>
+			</div>
+		</div>
+		<?php for($i = 0; $i < 7; $i++){ ?>
+			<div class="table-c">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<caption class="caption"><?php echo $show_date[$i]; ?></caption>
+				<tr class="TC">
+					<td width="40%">科室名称</td>
+					<td width="40%">医生姓名
+					<td width="20%">剩余号数</td>
+				</tr>
+				<?php foreach($visitations[$i] as $visitation): ?>
+				<?php $doctor = pdo_fetch("SELECT * FROM " . tablename('doctor') . " WHERE id = " . $visitation['doctor_id']); ?>
+				<?php $section = pdo_fetch("SELECT * FROM " . tablename('section_office') . " WHERE id = " . $doctor['section_id']);
+				?>
+				<tr  class="TC">
+					<td width="40%"><?php echo $section['name']; ?></td>
+					<td width="40%"><?php echo $doctor['name']; ?></td>
+					<td width="20%"><?php echo $visitation['number'] - $visitation['registered'] ?></td>
+				</tr>
+				<?php endforeach; ?>
+			</table>
+		</div>
+		<?php } ?>
+
+		<div class="foot">版权所有 公主岭市妇幼保健院</div>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#select2").hide();
+				$('.table-c:eq(0)').show().siblings('.table-c').hide();
+				$("#select1").click(function() {
+					$("#select2").toggle();
+				});
+				$("#select2 li").bind("click", function() {
+					console.log($(this).attr("value"));
+					$("#span1").text($(this).text());
+					$('.table-c:eq(' + $(this).attr("value") + ')').show().siblings('.table-c').hide();
+					console.log($(".table-c").eq(2));
+				});
+			});
+
+			function openLogin() {
+				api.openWin({
+					name: 'login',
+					url: './login_header.html',
+					bounces: false,
+					delay: 200
+				});
+			}
+		</script>
+	</body>
+
+</html>
